@@ -74,6 +74,7 @@ Then give us the forecast range, e.g., 6
                             Console.WriteLine($"Weather Conditions: {condition}\n");
 
                             /*
+                                Adding these fields later
                                 humidity
                                 feels like
                                 wind mph
