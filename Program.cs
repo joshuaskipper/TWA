@@ -54,33 +54,95 @@ Then give us the forecast range, e.g., 6
                         var celcius = currentTOP.GetProperty("temp_c");
                         var farenheit = currentTOP.GetProperty("temp_f");
 
-                        Console.Clear();
-                        Console.WriteLine(date);
-                        Console.WriteLine($"Searched City: {name}");
-                        Console.WriteLine($"Region: {region}");
-                        Console.WriteLine($"Current weather in Celsius: {celcius}");
-                        Console.WriteLine($"Current weather in Fahrenheit: {farenheit}\n");
-                        foreach (var f in forecast.EnumerateArray())
-                        {
-                            var forcastdate = f.GetProperty("date");
-                            DateTime parsedDate = DateTime.Parse(forcastdate.ToString());
-                            string longDate = parsedDate.ToString("dddd, MMM dd");
-                            var days = f.GetProperty("day");
-                            var condition = days.GetProperty("condition").GetProperty("text");
-                            Console.WriteLine($"--------{longDate}--------");
-                            Console.WriteLine($"Min Temp in Fahrenheit: {days.GetProperty("mintemp_f")}℉");
-                            Console.WriteLine($"Avg Temp in Fahrenheit: {days.GetProperty("avgtemp_f")}℉");
-                            Console.WriteLine($"Max Temp in Fahrenheit: {days.GetProperty("maxtemp_f")}℉");
-                            Console.WriteLine($"Weather Conditions: {condition}\n");
 
-                            /*
-                                Adding these fields later
-                                humidity
-                                feels like
-                                wind mph
-                                chance of rain
-                                hour by hour
-                             */
+                        Console.WriteLine("Do you want the temperature to be in a (Farenheit/Celcius) type 'f' or 'c'");
+                        var conversion = Console.ReadLine().Trim().ToLower();
+
+                        var windMPH = currentTOP.GetProperty("wind_mph");
+                        var humidity = currentTOP.GetProperty("humidity");
+                        var feelsLikeC = currentTOP.GetProperty("feelslike_c");
+                        var feelsLikeF = currentTOP.GetProperty("feelslike_f");
+
+
+
+
+
+                        if (conversion == "f")
+                        {
+
+                            Console.Clear();
+                            Console.WriteLine(date);
+                            Console.WriteLine($"Searched City: {name}");
+                            Console.WriteLine($"Region: {region}");
+                            //Console.WriteLine($"Current weather in Celsius: {celcius}");
+                            Console.WriteLine($"Current weather in Fahrenheit: {farenheit}F");
+                            Console.WriteLine($"Current Humidity: {humidity}");
+                            Console.WriteLine($"Current Wind MPH: {windMPH}");
+                            Console.WriteLine($"Feels Like: {feelsLikeF}F\n");
+
+                            foreach (var f in forecast.EnumerateArray())
+                            {
+                                var forcastdate = f.GetProperty("date");
+                                DateTime parsedDate = DateTime.Parse(forcastdate.ToString());
+                                string longDate = parsedDate.ToString("dddd, MMM dd");
+                                var days = f.GetProperty("day");
+                                var condition = days.GetProperty("condition").GetProperty("text");
+                                Console.WriteLine($"--------{longDate}--------");
+                                Console.WriteLine($"Low: {days.GetProperty("mintemp_f")}°F");
+                                Console.WriteLine($"Avg: {days.GetProperty("avgtemp_f")}°F");
+                                Console.WriteLine($"High: {days.GetProperty("maxtemp_f")}°F");
+                                Console.WriteLine($"Daily Chance of rain: {days.GetProperty("daily_chance_of_rain")}%");
+                                Console.WriteLine($"Weather Conditions: {condition}\n");
+
+
+
+                                /*
+                                    humidity
+                                    feels like
+                                    wind mph
+                                    chance of rain
+                                    hour by hour
+                                 */
+                            }
+
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            Console.WriteLine(date);
+                            Console.WriteLine($"Searched City: {name}");
+                            Console.WriteLine($"Region: {region}");
+                            Console.WriteLine($"Current weather in Celsius: {celcius}°C");
+                            Console.WriteLine($"Current Humidity: {humidity}");
+                            Console.WriteLine($"Current Wind MPH: {windMPH}");
+                            Console.WriteLine($"Feels Like: {feelsLikeC}C\n");
+                            
+                            //Console.WriteLine($"Current weather in Fahrenheit: {farenheit}\n");
+                            foreach (var f in forecast.EnumerateArray())
+                            {
+                                var forcastdate = f.GetProperty("date");
+                                DateTime parsedDate = DateTime.Parse(forcastdate.ToString());
+                                string longDate = parsedDate.ToString("dddd, MMM dd");
+                                var days = f.GetProperty("day");
+                                var condition = days.GetProperty("condition").GetProperty("text");
+                                Console.WriteLine($"--------{longDate}--------");
+                                Console.WriteLine($"Low: {days.GetProperty("mintemp_c")}°C");
+                                Console.WriteLine($"Avg: {days.GetProperty("avgtemp_c")}°C");
+                                Console.WriteLine($"High: {days.GetProperty("maxtemp_c")}°C");
+                                Console.WriteLine($"Daily Chance of rain: {days.GetProperty("daily_chance_of_rain")}%");
+                                Console.WriteLine($"Weather Conditions: {condition}\n");
+                                //Console.WriteLine($"Min Temp: {minTemp}°{unitSymbol}");
+
+
+                                /*
+                                    humidity
+                                    feels like
+                                    wind mph
+                                    chance of rain
+                                    hour by hour
+                                 */
+                            }
+
                         }
                     }
                 }
@@ -92,3 +154,4 @@ Then give us the forecast range, e.g., 6
         }
     }
 }
+
