@@ -1,6 +1,6 @@
 # TWA - True Weather Application
 
-**TWA (True Weather Application)** is a .NET console application that provides users with real-time weather information. This project serves as the foundation for a future full-featured weather platform designed to rival native weather apps on mobile and desktop operating systems.
+**TWA (True Weather Application)** is a .NET console application that provides users with real-time weather information. This project serves as a foundation for a full featured weather app that will be accessible on all mobile devices and as a desktop application.
 
 ## Features
 
